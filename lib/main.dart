@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fortuneteller/consts.dart';
 import 'package:fortuneteller/pages/main_page.dart';
 
 void main() async {
@@ -16,6 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textTheme: TextTheme(
+          bodyText1: TextStyle(),
+          bodyText2: TextStyle(),
+        ).apply(
+          bodyColor: Color(TEXT_COLOR),
+          displayColor: Color(TEXT_COLOR),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: MainPage(),
     );

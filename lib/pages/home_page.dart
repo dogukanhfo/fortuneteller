@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fortuneteller/consts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,50 +29,53 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         controller: pageController,
         children: [
-          Container(
-            child: Center(
-              child: Text('HomePage'),
-            ),
+          Center(
+            child: Text('HomePage'),
           ),
-          Container(
-            child: Center(
-              child: Text('Camera'),
-            ),
+          Center(
+            child: Text('Inbox'),
           ),
-          Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Giriş yapılan email ${user.email}'),
-                MaterialButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                  },
-                  color: Colors.deepPurple,
-                  child: Text('Çıkış yap'),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Giriş yapılan email ${user.email}'),
+              MaterialButton(
+                enableFeedback: false,
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                color: Color(BUTTON_COLOR),
+                child: Text(
+                  'Çıkış yap',
+                  style: TextStyle(
+                    color: Color(BUTTON_TEXT_COLOR),
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        enableFeedback: false,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt),
-            label: 'Camera',
+            icon: Icon(Icons.inbox_sharp),
+            label: 'Inbox',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.account_box_rounded),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
+        selectedItemColor: Color(BUTTON_COLOR),
         onTap: onTapped,
       ),
     );

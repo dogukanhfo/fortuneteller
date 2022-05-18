@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fortuneteller/consts.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color(BACKGROUND_COLOR),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -44,13 +45,14 @@ class _LoginPageState extends State<LoginPage> {
                 Icon(
                   Icons.coffee,
                   size: 100,
+                  color: Color(ICON_COLOR),
                 ),
                 SizedBox(
                   height: 50,
                 ),
 
                 Text(
-                  'Akıllı Falcı',
+                  APP_NAME,
                   style: GoogleFonts.poppins(
                     fontSize: 52,
                   ),
@@ -74,15 +76,17 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _emailController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide:
+                            BorderSide(color: Color(TEXT_FIELD_BORDER_COLOR)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.deepPurple),
+                        borderSide: BorderSide(
+                            color: Color(CLICKED_TEXT_FIELD_BORDER_COLOR)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       hintText: 'email',
-                      fillColor: Colors.grey[200],
+                      fillColor: Color(TEXT_FIELD_COLOR),
                       filled: true,
                     ),
                   ),
@@ -100,15 +104,17 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide:
+                            BorderSide(color: Color(TEXT_FIELD_BORDER_COLOR)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.deepPurple),
+                        borderSide: BorderSide(
+                            color: Color(CLICKED_TEXT_FIELD_BORDER_COLOR)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       hintText: 'password',
-                      fillColor: Colors.grey[200],
+                      fillColor: Color(TEXT_FIELD_COLOR),
                       filled: true,
                     ),
                   ),
@@ -126,14 +132,14 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple,
+                        color: Color(BUTTON_COLOR),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Center(
                         child: Text(
                           'Giriş yap',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(BUTTON_TEXT_COLOR),
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                           ),
