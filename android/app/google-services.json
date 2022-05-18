@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "847831945917",
+    "project_id": "fortuneteller-72d49",
+    "storage_bucket": "fortuneteller-72d49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847831945917:android:4b8bbbe130b3f0a706ddd4",
+        "android_client_info": {
+          "package_name": "com.example.fortuneteller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847831945917-43ff8cma13gp0pkthju7381kuslcti91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkGDcDrtjPrCXI_aO2Uj4jj0qhf5dbw4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847831945917-43ff8cma13gp0pkthju7381kuslcti91.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
