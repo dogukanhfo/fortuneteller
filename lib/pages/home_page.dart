@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortuneteller/consts.dart';
+import 'package:fortuneteller/pages/navbar_pages/nav_home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,27 +15,69 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
 
-  PageController pageController = PageController();
+  PageController _pageController = PageController();
+
+  static const List<Widget> _titles = <Widget>[
+    Text(
+      'Falmatik',
+      style: TextStyle(
+        color: Color(TEXT_COLOR),
+      ),
+    ),
+    Text(
+      'Gelen kutusu',
+      style: TextStyle(
+        color: Color(TEXT_COLOR),
+      ),
+    ),
+    Text(
+      'Profil',
+      style: TextStyle(
+        color: Color(TEXT_COLOR),
+      ),
+    ),
+  ];
 
   void onTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    pageController.jumpToPage(index);
+    _pageController.jumpToPage(index);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Color(BACKGROUND_COLOR),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: _titles.elementAt(_selectedIndex),
+      ),
       body: PageView(
-        controller: pageController,
+        physics: NeverScrollableScrollPhysics(),
+        controller: _pageController,
         children: [
-          Center(
-            child: Text('HomePage'),
-          ),
+          // Home Tab
+
+          NavHomePage(),
+
+          // Inbox Tab
+
           Center(
             child: Text('Inbox'),
           ),
+
+          // Profile Tab
+
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
