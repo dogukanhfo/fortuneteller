@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortuneteller/consts.dart';
 import 'package:fortuneteller/pages/navbar_pages/nav_home.dart';
+import 'package:fortuneteller/pages/navbar_pages/nav_profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
 
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   static const List<Widget> _titles = <Widget>[
     Text(
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
-        children: [
+        children: const [
           // Home Tab
 
           NavHomePage(),
@@ -78,25 +79,7 @@ class _HomePageState extends State<HomePage> {
 
           // Profile Tab
 
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Giriş yapılan email ${user.email}'),
-              MaterialButton(
-                enableFeedback: false,
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                color: Color(BUTTON_COLOR),
-                child: Text(
-                  'Çıkış yap',
-                  style: TextStyle(
-                    color: Color(BUTTON_TEXT_COLOR),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          NavProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
