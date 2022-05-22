@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fortuneteller/consts.dart';
 import 'package:fortuneteller/nav_animation/nav_animation.dart';
-import 'package:fortuneteller/pages/navbar_pages/profilepage/edit_profile.dart';
+import 'package:fortuneteller/pages/navbar_pages/profilepage/create_profile.dart';
 import 'package:fortuneteller/pages/navbar_pages/profilepage/fav_fortunes.dart';
 
 class NavProfilePage extends StatefulWidget {
@@ -28,7 +27,7 @@ class _NavProfilePageState extends State<NavProfilePage> {
             onTap: () {
               Navigator.of(context).push(
                 createRoute(
-                  EditProfilePage(),
+                  CreateProfilePage(),
                 ),
               );
             },

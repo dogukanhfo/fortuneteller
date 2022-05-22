@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fortuneteller/consts.dart';
-import 'package:fortuneteller/pages/main_page.dart';
+import 'package:fortuneteller/pages/main_page/main_page.dart';
+import 'package:fortuneteller/pages/navbar_pages/profilepage/create_profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: MainPage(),
+      routes: {
+        '/createProfile': (context) => CreateProfilePage(),
+      },
     );
   }
 }
