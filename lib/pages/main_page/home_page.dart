@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortuneteller/consts.dart';
-import 'package:fortuneteller/pages/navbar_pages/nav_home.dart';
+import 'package:fortuneteller/pages/navbar_pages/homepage/nav_home.dart';
 import 'package:fortuneteller/pages/navbar_pages/nav_profile.dart';
 
 class HomePage extends StatefulWidget {
