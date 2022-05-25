@@ -1,16 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortuneteller/services/firestore_adduser.dart';
 
-class CreateProfilePage extends StatefulWidget {
-  const CreateProfilePage({Key? key}) : super(key: key);
+class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<CreateProfilePage> createState() => _CreateProfilePageState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
-class _CreateProfilePageState extends State<CreateProfilePage> {
+class _EditProfilePageState extends State<EditProfilePage> {
   final user = FirebaseAuth.instance.currentUser!;
+
+  DocumentSnapshot? snapshot;
+
+  void getData() async {
+    //use a Async-await function to get the data
+    final data = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .get(); //get the data
+    snapshot = data;
+  }
 
   final _firstNameController = TextEditingController();
 
@@ -61,43 +73,84 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    //read document property from firebase
+    Future<DocumentSnapshot> getData() async {
+      String? _email = (await user).email;
+      var a = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: _email)
+          .get();
+
+      return a.docs[0];
+    }
+
     //Marital status dropdown
 
-    final mSDropdown = DropdownButton(
-      items: _createMarStaList(),
-      hint: Text('İlişki durumu'),
-      value: mSSelectedItem,
-      onChanged: (String? value) => setState(
-        () {
-          mSSelectedItem = value ?? "";
-        },
-      ),
+    final mSDropdown = FutureBuilder<DocumentSnapshot>(
+      future: getData(),
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return DropdownButton(
+          items: _createMarStaList(),
+          hint: Text(snapshot.data!['maritalStatus']),
+          value: mSSelectedItem,
+          onChanged: (String? value) => setState(
+            () {
+              mSSelectedItem = value ?? "";
+            },
+          ),
+        );
+      },
     );
 
     //Job dropdown
 
-    final jobDropdown = DropdownButton(
-      items: _createjobList(),
-      hint: Text('Meslek'),
-      value: jobSelectedItem,
-      onChanged: (String? value) => setState(
-        () {
-          jobSelectedItem = value ?? "";
-        },
-      ),
+    final jobDropdown = FutureBuilder<DocumentSnapshot>(
+      future: getData(),
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return DropdownButton(
+          items: _createjobList(),
+          hint: Text(snapshot.data!['job']),
+          value: jobSelectedItem,
+          onChanged: (String? value) => setState(
+            () {
+              jobSelectedItem = value ?? "";
+            },
+          ),
+        );
+      },
     );
 
     //Sex dropdown
 
-    final sexDropdown = DropdownButton(
-      items: _createsexList(),
-      hint: Text('Cinsiyet'),
-      value: sexSelectedItem,
-      onChanged: (String? value) => setState(
-        () {
-          sexSelectedItem = value ?? "";
-        },
-      ),
+    final sexDropdown = FutureBuilder<DocumentSnapshot>(
+      future: getData(),
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return DropdownButton(
+          items: _createsexList(),
+          hint: Text(snapshot.data!['sex']),
+          value: sexSelectedItem,
+          onChanged: (String? value) => setState(
+            () {
+              sexSelectedItem = value ?? "";
+            },
+          ),
+        );
+      },
     );
 
     return Scaffold(
@@ -143,8 +196,6 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
             jobSelectedItem,
             sexSelectedItem,
           ),
-          Text(
-              'Profilinizi daha sonra profili düzenle \nkısmından düzenleyebilirsiniz.')
         ],
       ),
     );

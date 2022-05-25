@@ -40,6 +40,10 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
               ),
             ],
           );
+        } else {
+          SizedBox(
+            child: CircularProgressIndicator(),
+          );
         }
         var userDocument = snapshot.data!;
         return Column(
@@ -53,21 +57,12 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  primary: Color(BUTTON_COLOR),
-                  textStyle: TextStyle(
-                    color: Color(BUTTON_TEXT_COLOR),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
                   minimumSize: Size(200, 50)),
               onPressed: () {
                 //TODO: when clicked go to camera
               },
               child: Text(
                 'Kahve Falı',
-                style: TextStyle(
-                  color: Color(BUTTON_TEXT_COLOR),
-                ),
               ),
             ),
           ],
