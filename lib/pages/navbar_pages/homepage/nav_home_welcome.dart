@@ -28,6 +28,11 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
               Text('Profilinizi oluşturduktan sonra fal bakabiliriz'),
               Icon(Icons.arrow_drop_down),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    minimumSize: Size(200, 50)),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -39,10 +44,6 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                 child: Text('Profil Oluştur'),
               ),
             ],
-          );
-        } else {
-          SizedBox(
-            child: CircularProgressIndicator(),
           );
         }
         var userDocument = snapshot.data!;
