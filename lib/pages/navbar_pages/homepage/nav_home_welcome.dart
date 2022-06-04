@@ -22,6 +22,9 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
           .doc(user.uid)
           .snapshots(),
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('error');
+        }
         if (!snapshot.hasData || !snapshot.data!.exists) {
           return Column(
             children: [

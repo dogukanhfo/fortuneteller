@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortuneteller/consts.dart';
 import 'package:fortuneteller/pages/navbar_pages/homepage/nav_home.dart';
+import 'package:fortuneteller/pages/navbar_pages/inboxpage/nav_inbox.dart';
 import 'package:fortuneteller/pages/navbar_pages/nav_profile.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       ),
     ),
     Text(
-      'Gelen kutusu',
+      'Fal kutusu',
       style: TextStyle(
         color: Color(TEXT_COLOR),
       ),
@@ -82,9 +83,7 @@ class _HomePageState extends State<HomePage> {
 
           // Inbox Tab
 
-          Center(
-            child: Text('Inbox'),
-          ),
+          NavInboxPage(),
 
           // Profile Tab
 
