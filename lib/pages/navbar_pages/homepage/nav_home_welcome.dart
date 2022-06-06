@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortuneteller/consts.dart';
+import 'package:fortuneteller/pages/coffe_fortune_page/coffe_fortune.dart';
 import 'package:fortuneteller/pages/navbar_pages/profilepage/create_profile.dart';
 
 class WelcomeWidget extends StatefulWidget {
@@ -63,7 +64,12 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                   ),
                   minimumSize: Size(200, 50)),
               onPressed: () {
-                //TODO: when clicked go to camera
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CoffeFortunePage(),
+                  ),
+                );
               },
               child: Text(
                 'Kahve Falı',
