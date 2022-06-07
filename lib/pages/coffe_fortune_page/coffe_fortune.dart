@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fortuneteller/services/firestore_addcomment.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CoffeFortunePage extends StatefulWidget {
@@ -12,6 +15,8 @@ class CoffeFortunePage extends StatefulWidget {
 }
 
 class _CoffeFortunePageState extends State<CoffeFortunePage> {
+  final user = FirebaseAuth.instance.currentUser!;
+
   File? image;
 
   Future pickImage(ImageSource source) async {
@@ -49,20 +54,13 @@ class _CoffeFortunePageState extends State<CoffeFortunePage> {
       );
   @override
   Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(32),
         child: Column(
           children: [
-            image != null
-                ? Image.file(
-                    image!,
-                    width: 160,
-                    height: 160,
-                    fit: BoxFit.cover,
-                  )
-                : FlutterLogo(size: 64),
-            const SizedBox(height: 48),
             buildButton(
               title: 'Galeriden seç',
               icon: Icons.image_outlined,
@@ -74,6 +72,24 @@ class _CoffeFortunePageState extends State<CoffeFortunePage> {
               icon: Icons.camera_alt_outlined,
               onClicked: () => pickImage(ImageSource.camera),
             ),
+            const SizedBox(height: 24),
+            image != null
+                ? Column(
+                    children: [
+                      Image.file(
+                        image!,
+                        width: 160,
+                        height: 160,
+                        fit: BoxFit.cover,
+                      ),
+                      AddComment(
+                        userId: user.uid,
+                        comment: 'Merhaba dogukan, blablabla',
+                        readStatus: 'Okunmamış falınız var...',
+                      )
+                    ],
+                  )
+                : FlutterLogo(size: 64),
           ],
         ),
       ),
