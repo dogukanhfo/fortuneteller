@@ -21,12 +21,6 @@ class _CommentScreenState extends State<CommentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<String> get_data(DocumentReference doc_ref) async {
-      DocumentSnapshot docSnap = await doc_ref.get();
-      var doc_id2 = docSnap.reference.id;
-      return doc_id2;
-    }
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(24.0),
