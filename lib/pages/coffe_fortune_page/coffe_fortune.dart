@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fortuneteller/pages/coffe_fortune_page/static_image/static.dart';
 import 'package:fortuneteller/services/firestore_addcomment.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -90,6 +91,20 @@ class _CoffeFortunePageState extends State<CoffeFortunePage> {
                     ],
                   )
                 : FlutterLogo(size: 64),
+            ButtonTheme(
+              minWidth: 170,
+              child: RaisedButton(
+                child: Text("Detect in Image"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => StaticImage(),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

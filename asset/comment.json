@@ -1,0 +1,12 @@
+{
+    "figures":[
+        {
+            "id":"person",
+            "comment":"This is a person"
+        },
+        {
+            "id":"motorcycle",
+            "comment":"This is a motorcycle"
+        }
+    ]
+}
