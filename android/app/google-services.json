@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "847831945917-8ea225mu4m70mdp5hi2jqbitjniprdbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fortuneteller",
+            "certificate_hash": "69dc692b6613dbe09007c97d94200a55da2aaf0d"
+          }
+        },
+        {
           "client_id": "847831945917-43ff8cma13gp0pkthju7381kuslcti91.apps.googleusercontent.com",
           "client_type": 3
         }
